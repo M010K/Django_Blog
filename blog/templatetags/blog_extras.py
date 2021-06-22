@@ -40,3 +40,33 @@ def show_tags(context):
     return {
         'tag_list': tag_list,
     }
+
+@register.inclusion_tag('blog/inclusions/_index_categories.html', takes_context=True)
+def show_index_categories(context):
+    """
+    为主页返回所有分类列表
+    """
+    category_list = Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
+    return {
+        'category_list': category_list,
+    }
+
+@register.inclusion_tag('blog/inclusions/_related_tags.html', takes_context=True)
+def show_related_tags(context, post):
+    """
+    返回当前文章post的相关标签列表
+    """
+    tag_list = Tag.objects.filter(post=post).order_by('-id')
+    return {
+        'tag_list': tag_list,
+    }
+
+@register.inclusion_tag('blog/inclusions/_total_views.html', takes_context=True)
+def show_total_views(context):
+    """
+    返回当前所有文章的总阅读量
+    """
+    view_count = Post.objects.aggregate(nums=Sum('views'))
+    return {
+        'view_count': view_count,
+    }
