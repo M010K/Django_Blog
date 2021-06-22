@@ -1,0 +1,62 @@
+<script>
+    function addRandomURL() {
+        var img_list = {
+            'img1': 'https://source.unsplash.com/collection/220381/600x626',
+            'img2': 'https://source.unsplash.com/collection/1041983/600x626',
+            'img3': 'https://source.unsplash.com/collection/9042799/600x626',
+            'img4': 'https://source.unsplash.com/collection/1198107/600x626',
+            'img5': 'https://source.unsplash.com/collection/3694365/600x626',
+            'img6': 'https://source.unsplash.com/collection/1708734/600x626',
+            'img7': 'https://source.unsplash.com/collection/1118894/600x626',
+            'img8': 'https://source.unsplash.com/collection/388793/600x626',
+            'img9': 'https://source.unsplash.com/collection/3150958/600x626',
+            'img10': 'https://source.unsplash.com/collection/894/600x626',
+        }
+        var path = ''
+        var x = Math.floor((Math.random() * 10) + 1);
+        path = "img" + x;
+
+        var obj = document.getElementById("random-image");
+        obj.src = img_list[path];
+        obj.id = "random-image" + x.toString();
+
+    }
+</script>
+<div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-halves">
+    {% for category in category_list %}
+    <div class="columns portfolio-item">
+        <div class="item-wrap">
+            <a href="{% url 'blog:category' category.pk %}">
+
+                <img id="random-image" alt="" src="">
+
+                <div class="overlay"></div>
+                <div class="link-icon"><i class="fa fa-link"></i></div>
+            </a>
+            <div class="portfolio-item-meta">
+                <h5><a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a></h5>
+                <p>
+                    {% if category.excerpt|length > 0 %} {{ category.excerpt }} {% else %} No discription of this category. {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        addRandomURL()
+    </script>
+    {% empty %}
+    <div class="columns portfolio-item">
+        <div class="item-wrap">
+            <a href="#">
+                <img alt="" src="https://source.unsplash.com/collection/220381/600x626">
+                <div class="overlay"></div>
+                <div class="link-icon"><i class="fa fa-link"></i></div>
+            </a>
+            <div class="portfolio-item-meta">
+                <h5><a href="#">Blank Category</a></h5>
+                <p>No discription of this category.</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
