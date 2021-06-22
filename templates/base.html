@@ -1,0 +1,206 @@
+{% load static %} {% load blog_extras %}
+<!DOCTYPE html>
+<!--[if lt IE 8 ]>
+<html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!-->
+<html class="no-js" lang="zh-hans">
+<!--<![endif]-->
+
+<head>
+
+    <!--- Basic Page Needs
+   ================================================== -->
+    <meta charset="utf-8">
+    <title>M010K的个人博客</title>
+    <meta name="description" content="基于HTML5/CSS3的个人博客">
+    <meta name="author" content="M010K">
+
+    <!-- Mobile Specific Metas
+   ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'blog/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/media-queries.css' %}">
+
+    <!-- Script
+   ================================================== -->
+    <script src="{% static 'blog/js/modernizr.js' %}"></script>
+
+    <!-- Favicons
+	================================================== -->
+    <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico' %}">
+
+
+
+</head>
+
+<body>
+
+    <!-- Header
+================================================== -->
+    <header>
+
+        <div class="row">
+
+            <div class="twelve columns">
+
+                <div class="logo">
+                    <a href="{% url 'blog:index' %}"><img alt="" src="{% static 'blog/images/logo.png' %}"></a>
+                </div>
+
+                <nav id="nav-wrap">
+
+                    <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+                    <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+                    <ul id="nav" class="nav">
+
+                        <li class="current"><a href="{% url 'blog:index' %}">Home</a></li>
+                        <li><span><a href="blog.html">Blog</a></span>
+                            <ul>
+                                <li><a href="blog.html">Blog Index</a></li>
+                                <li><a href="single.html">Post</a></li>
+                            </ul>
+                        </li>
+                        <!-- <li><span><a href="portfolio-index.html">Portfolio</a></span>
+                        <ul>
+                            <li><a href="portfolio-index.html">Portfolio Index</a></li>
+                            <li><a href="portfolio.html">Portfolio Entry</a></li>
+                        </ul>
+                    </li> -->
+                        <li><a href="{% url 'blog:about' %}">About</a></li>
+                        <li><a href="{% url 'blog:contact' %}">Contact</a></li>
+                        <li><a href="{% url 'blog:feature' %}">Features</a></li>
+
+                    </ul>
+                    <!-- end #nav -->
+
+                </nav>
+                <!-- end #nav-wrap -->
+
+            </div>
+
+        </div>
+
+    </header>
+    <!-- Header End -->
+    {% block main %} {% endblock main %}
+
+    <!-- Call-To-Action Section
+================================================== -->
+    <section id="call-to-action">
+
+        <div class="row">
+
+            <div class="eight columns offset-1">
+
+                <h1><a href="https://github.com/M010K">探索更多内容</a></h1>
+                <p>这个站点主要用来管理发布的博客，如需要访问其他内容，欢迎访问我的Github👏.
+                    <!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->.
+                </p>
+
+            </div>
+
+            <div class="three columns action">
+
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Call-To-Action Section End-->
+
+    <!-- Github Section
+================================================== -->
+    <section id="tweets">
+
+        <div class="row">
+
+            <div class="tweeter-icon align-center">
+                <i class="fa fa-github"></i>
+            </div>
+
+            <ul id="twitter" class="align-center">
+                <li>
+                    <span>
+                        This is My Github Site.
+                        <a href="https://github.com/M010K">https://github.com/M010K</a>
+                    </span>
+                </li>
+            </ul>
+
+            <p class="align-center"><a href="https://github.com/M010K" class="button">Follow HIM</a></p>
+
+        </div>
+
+    </section>
+    <!-- Github Section End-->
+
+
+    <!-- footer
+================================================== -->
+    <footer>
+
+        <div class="row">
+
+            <div class="twelve columns">
+                <ul class="footer-nav">
+                    <li><a href="index.html">Home.</a></li>
+                    <li><a href="blog.html">Blog.</a></li>
+                    <!-- <li><a href="portfolio-index.html">Portfolio.</a></li> -->
+                    <li><a href="{% url 'blog:about' %}">About.</a></li>
+                    <li><a href="{% url 'blog:contact' %}">Contact.</a></li>
+                    <li><a href="{% url 'blog:about' %}">Features.</a></li>
+                </ul>
+
+                <ul class="footer-social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                </ul>
+
+                <ul class="copyright">
+                    <li>Copyright &copy; 2021 M010K</li>
+                </ul>
+
+            </div>
+
+            <div id="go-top" style="display: block;"><a title="Back to Top" href="#">Go To Top</a></div>
+
+        </div>
+
+    </footer>
+    <!-- Footer End-->
+
+    <!-- Java Script
+================================================== -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write("<script src= '{% static 'blog/js/jquery-1.10.2.min.js'%}'><\/script>")
+    </script>
+    <script type="text/javascript" src="{% static 'blog/js/jquery-migrate-1.2.1.min.js' %}"></script>
+
+    <script src="{% static 'blog/js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'blog/js/doubletaptogo.js' %}"></script>
+    <script src="{% static 'blog/js/init.js' %}"></script>
+
+    <!-- code highlight -->
+    <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
+    </script>
+
+</body>
+
+</html>
