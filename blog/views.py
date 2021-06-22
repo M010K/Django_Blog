@@ -36,8 +36,8 @@ class TagView(ListView):
     context_object_name = 'post_list'
 
     def get_queryset(self):
-        tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
-        return super(TagView, self).get_queryset().filter(tag=tag)
+        temp_tags = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
+        return Post.objects.filter(tags=temp_tags)
 
 
 class PostDetailView(DetailView):
@@ -76,6 +76,7 @@ class PostDetailView(DetailView):
 
         return post
 
+
 def about(request):
     return render(request, 'blog/about.html')
 
@@ -83,5 +84,13 @@ def about(request):
 def contact(request):
     return render(request, 'blog/contact.html')
 
+
 def feature(request):
     return render(request, 'blog/styles.html')
+
+
+def archive(request, year, month):
+    post_list = Post.objects.filter(created_time__year=year,
+                                    created_time__month=month
+                                    ).order_by('-created_time')
+    return render(request, 'blog/index.html', context={'post_list': post_list})
