@@ -1,0 +1,136 @@
+{% extends 'base.html' %} {% load static %} {% load blog_extras %} {% block main %}
+<!-- Page Title
+       ================================================== -->
+<div id="page-title">
+
+    <div class="row">
+
+        <div class="ten columns centered text-center">
+            <h1>M010K的个人博客</h1>
+
+            <p>The sooner you start to code, the longer the program will take. —— Roy Carlson </p>
+        </div>
+
+    </div>
+
+</div>
+<!-- Page Title End-->
+
+
+<!-- Content
+       ================================================== -->
+<div class="content-outer">
+
+    <div id="page-content" class="row">
+
+        <div id="primary" class="eight columns">
+
+            <article class="post">
+
+                <div class="entry-header cf">
+
+                    <h1>{{ post.title }}</h1>
+
+                    <p class="post-meta">
+                        <time class="date" datetime="{{ post.created_time }}">{{ post.created_time }}</time> /
+                        <span class="readings">
+                            <a href="{{ post.get_absolute_url }}">阅读量: {{ post.views }}</a>
+                        </span>
+
+                        </br>
+                        <span class="categories">文章分类:
+                                <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
+                        </span> /
+                        <span class="tags">
+                                文章标签: {% show_related_tags post %}
+                            </span>
+                    </p>
+                </div>
+
+                <div class="post-thumb">
+                    <img src="https://source.unsplash.com/collection/220381/1300x500" alt="post-image" title="post-image">
+                </div>
+
+                <div class="post-content">
+                    {{ post.body |safe }}
+
+                    <div class="bio cf">
+
+                        <div class="gravatar">
+                            <img src="{% static 'blog/images/author-img.png' %}" alt="">
+                        </div>
+                        <div class="about">
+                            <h5><a title="Posts by {{ post.author }}" href="#" rel="author">{{ post.author }}</a>
+                            </h5>
+                            <p>全栈工程师（雾）</p>
+                        </div>
+
+                    </div>
+
+                    <ul class="post-nav cf">
+                        <li class="prev"><a rel="prev" href="#"><strong>上一篇</strong> Todo pre
+                                Amet Nibh Vulputate</a></li>
+                        <li class="next"><a rel="next" href="#"><strong>下一篇</strong> Todo next
+                                Ipsum</a></li>
+                    </ul>
+
+                </div>
+
+            </article>
+            <!-- post end -->
+
+
+        </div>
+
+        <!-- 侧边栏开发 -->
+        <div id="secondary" class="four columns end">
+
+            <aside id="sidebar">
+
+                <div class="widget widget_search">
+                    <h5>Search</h5>
+                    <form action="#">
+
+                        <input class="text-search" type="text" onfocus="if (this.value == 'Search here...') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Search here...'; }" value="Search here...">
+                        <input type="submit" class="submit-search" value="">
+
+                    </form>
+                </div>
+
+
+                <div class="widget widget_text">
+                    {% if post.toc %}
+                    <h5 class="widget-title">文章目录</h5>
+                    <div class="textwidget">{{ post.toc|safe }}</div>
+                    {% else %}
+                    <h5 class="widget-title">Tenet</h5>
+                    <div class="textwidget">When in doubt, use brute force. ——Ken Thompson</div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- 显示最近发布的5篇博客 -->
+                {% show_recent_posts 5 %}
+
+                <!-- 显示博客归档 -->
+                {% show_archives %}
+
+                <!-- 显示所有的博客分类以及每个分类下的文章数 -->
+                {% show_categories %}
+
+                <!-- 显示所有的标签 -->
+                {% show_tags %}
+
+            </aside>
+            <!-- Sidebar End -->
+
+        </div>
+        <!-- Comments End -->
+
+    </div>
+
+</div>
+<!-- Content End-->
+
+{% endblock main %}
