@@ -66,6 +66,7 @@ class PostDetailView(DetailView):
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
+            'markdown.extensions.toc',
             TocExtension(slugify=slugify),
         ])
         post.body = md.convert(post.body)
