@@ -15,7 +15,7 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):  # 重写get_context_data方法
         context = super().get_context_data(**kwargs)
-        # context['post_list'] = Post.objects.all().order_by('-created_time')
+        context['post_list'] = Post.objects.all().order_by('-created_time')
         context['category_list'] = Category.objects.all().order_by('-id')
         return context
 
