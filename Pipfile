@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "==2.2.3"
 markdown = "*"
+python-markdown-math = "*"
+pymdown-extensions = "*"
+pygments = "*"
 
 [dev-packages]
 

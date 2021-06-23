@@ -4,6 +4,7 @@ import markdown
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
 from markdown.extensions.toc import TocExtension, slugify
+from pymdownx.arithmatex import ArithmatexExtension
 
 from .models import Category, Tag, Post
 
@@ -66,8 +67,12 @@ class PostDetailView(DetailView):
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
-            'markdown.extensions.toc',
             TocExtension(slugify=slugify),
+
+            'pymdownx.arithmatex',
+            # 使用Mathjax渲染网页
+            # 'mdx_math',
+            # ArithmatexExtension(preview=False),
         ])
         post.body = md.convert(post.body)
 
