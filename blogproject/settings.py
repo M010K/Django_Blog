@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig'  # install blog app
+    'blog.apps.BlogConfig',  # install blog app
     'comments.apps.CommentsConfig',  # install comments app
 ]
 
