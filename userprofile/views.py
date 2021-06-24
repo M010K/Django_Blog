@@ -1,8 +1,10 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import UserLoginForm
+
+
 # Create your views here.
 # def index(request):
 #     return render(request, 'userprofile/index.html')
@@ -18,7 +20,7 @@ def user_login(request):
             # 如果均匹配则返回这个 user 对象
             user = authenticate(username=data['username'], password=data['password'])
             if user:
-                login(request, user)    # 实现用户登录，将用户数据保存在session中
+                login(request, user)  # 实现用户登录，将用户数据保存在session中
                 return redirect("blog:index")
             else:
                 return HttpResponse("账号或密码输入有误!请重新输入!")
@@ -29,3 +31,8 @@ def user_login(request):
         return render(request, "userprofile/login.html", context={'form': user_login_form})
     else:
         return HttpResponse("请使用GET或POST请求数据")
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("blog:index")
