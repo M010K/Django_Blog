@@ -35,6 +35,16 @@
                     <li><a href="{% url 'blog:contact' %}">Contact</a></li>
                     <li><a href="{% url 'blog:feature' %}">Features</a></li>
 
+                    {% if user.is_authenticated %}
+                        <li><span><a href="#">{{ user.username }}</a></span>
+                            <ul>
+                                <li><a href="{% url "userprofile:logout" %}">Log Out</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'userprofile:login' %}">Login</a></li>
+                    {% endif %}
+
                 </ul>
                 <!-- end #nav -->
 
