@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',  # install blog app
     'comments.apps.CommentsConfig',  # install comments app
+    'userprofile.apps.UserprofileConfig',   # install userprofile app
 ]
 
 MIDDLEWARE = [
