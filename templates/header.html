@@ -38,13 +38,13 @@
                     {% if user.is_authenticated %}
                         <li><span><a href="#">{{ user.username }}</a></span>
                             <ul>
+                                <li><a href="#" onclick="user_delete()">Delete Account</a></li>
                                 <li><a href="{% url "userprofile:logout" %}">Log Out</a></li>
                             </ul>
                         </li>
                     {% else %}
                         <li><a href="{% url 'userprofile:login' %}">Login</a></li>
                     {% endif %}
-
                 </ul>
                 <!-- end #nav -->
 
@@ -54,6 +54,31 @@
         </div>
 
     </div>
+
+    {% if user.is_authenticated %}
+        <form
+                style="display:none;"
+                id="user_delete"
+                action="{% url 'userprofile:delete' user.id %}"
+                method="POST"
+        >
+            {% csrf_token %}
+            <button type="submit">发送</button>
+        </form>
+        <script>
+            function user_delete() {
+                // 调用layer弹窗组件
+                layer.open({
+                    title: "确认删除",
+                    content: "确认删除用户资料吗？",
+                    yes: function (index, layero) {
+                        $('form#user_delete button').click();
+                        layer.close(index);
+                    },
+                })
+            }
+        </script>
+    {% endif %}
 
 </header>
 <!-- Header End -->
