@@ -119,7 +119,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/layer')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
+# 设置邮件链接过期时间为10分钟
+PASSWORD_RESET_TOKEN_EXPIRES = 60 * 10
 
 # SMTP服务器，改为你的邮箱的smtp!
 EMAIL_HOST = 'smtp.163.com'
