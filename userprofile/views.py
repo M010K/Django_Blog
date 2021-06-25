@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.timesince import timesince
 
 from .forms import UserLoginForm, UserRegisterForm
 
@@ -45,6 +46,15 @@ def user_register(request):
         user_register_form = UserRegisterForm(data=request.POST)
         if user_register_form.is_valid():
             new_user = user_register_form.save(commit=False)
+
+            new_name = user_register_form.cleaned_data.get('username')
+            new_email = user_register_form.cleaned_data.get('email')
+            if new_name is not None and len(User.objects.filter(username=new_name)) != 0:
+                print(User.objects.filter(username=new_name))
+                return HttpResponse("用户名已存在!")
+
+            if new_email is not None and len(User.objects.filter(email=new_email)) != 0:
+                return HttpResponse("邮箱已存在!")
 
             new_user.set_password(user_register_form.cleaned_data['password'])
             new_user.save()
