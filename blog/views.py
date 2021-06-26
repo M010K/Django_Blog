@@ -69,10 +69,7 @@ class PostDetailView(DetailView):
             'markdown.extensions.codehilite',
             TocExtension(slugify=slugify),
 
-            'pymdownx.arithmatex',
-            # 使用Mathjax渲染网页
-            # 'mdx_math',
-            # ArithmatexExtension(preview=False),
+            'pymdownx.arithmatex',  # 使用Mathjax渲染网页
         ])
         post.body = md.convert(post.body)
 

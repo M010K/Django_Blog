@@ -1,0 +1,84 @@
+{% load static %}
+<!-- Header
+================================================== -->
+<header>
+
+    <div class="row">
+
+        <div class="twelve columns">
+
+            <div class="logo">
+                <a href="{% url 'blog:index' %}"><img alt="" src="{% static 'blog/images/logo.png' %}"></a>
+            </div>
+
+            <nav id="nav-wrap">
+
+                <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+                <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+                <ul id="nav" class="nav">
+
+                    <li class="current"><a href="{% url 'blog:index' %}">Home</a></li>
+                    <li><span><a href="blog.html">Blog</a></span>
+                        <ul>
+                            <li><a href="blog.html">Blog Index</a></li>
+                            <li><a href="single.html">Post</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><span><a href="portfolio-index.html">Portfolio</a></span>
+                <ul>
+                    <li><a href="portfolio-index.html">Portfolio Index</a></li>
+                    <li><a href="portfolio.html">Portfolio Entry</a></li>
+                </ul>
+            </li> -->
+                    <li><a href="{% url 'blog:about' %}">About</a></li>
+                    <li><a href="{% url 'blog:contact' %}">Contact</a></li>
+                    <li><a href="{% url 'blog:feature' %}">Features</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li><span><a href="#">{{ user.username }}</a></span>
+                            <ul>
+                                <li><a href="#" onclick="user_delete()">Delete Account</a></li>
+                                <li><a href="{% url "userprofile:logout" %}">Log Out</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'userprofile:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+                <!-- end #nav -->
+
+            </nav>
+            <!-- end #nav-wrap -->
+
+        </div>
+
+    </div>
+
+    {% if user.is_authenticated %}
+        <form
+                style="display:none;"
+                id="user_delete"
+                action="{% url 'userprofile:delete' user.id %}"
+                method="POST"
+        >
+            {% csrf_token %}
+            <button type="submit">发送</button>
+        </form>
+        <script>
+            function user_delete() {
+                // 调用layer弹窗组件
+                layer.open({
+                    title: "确认删除",
+                    content: "确认删除用户资料吗？",
+                    yes: function (index, layero) {
+                        $('form#user_delete button').click();
+                        layer.close(index);
+                    },
+                })
+            }
+        </script>
+    {% endif %}
+
+</header>
+<!-- Header End -->
