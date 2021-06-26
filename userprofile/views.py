@@ -47,12 +47,7 @@ def user_register(request):
         if user_register_form.is_valid():
             new_user = user_register_form.save(commit=False)
 
-            new_name = user_register_form.cleaned_data.get('username')
             new_email = user_register_form.cleaned_data.get('email')
-            if new_name is not None and len(User.objects.filter(username=new_name)) != 0:
-                print(User.objects.filter(username=new_name))
-                return HttpResponse("用户名已存在!")
-
             if new_email is not None and len(User.objects.filter(email=new_email)) != 0:
                 return HttpResponse("邮箱已存在!")
 
@@ -63,7 +58,10 @@ def user_register(request):
             login(request, new_user)
             return redirect("blog:index")
         else:
-            return HttpResponse("注册表单输入有误。请重新输入!")
+            if user_register_form.errors.get('username'):
+                return HttpResponse("用户名已存在!")
+            else:
+                return HttpResponse("注册表单输入有误。请重新输入!")
     elif request.method == 'GET':
         user_register_form = UserRegisterForm()
         return render(request, "userprofile/register.html", context={'form': user_register_form})
