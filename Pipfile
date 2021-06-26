@@ -9,6 +9,7 @@ markdown = "*"
 python-markdown-math = "*"
 pymdown-extensions = "*"
 pygments = "*"
+django-password-reset = "*"
 
 [dev-packages]
 
