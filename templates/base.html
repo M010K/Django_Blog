@@ -1,5 +1,6 @@
 {% load static %} {% load blog_extras %}
 <!DOCTYPE html>
+
 <head>
     <!--- Basic Page Needs
    ================================================== -->
@@ -35,103 +36,103 @@
 </head>
 
 <body>
-<!-- 引入导航栏 -->
-{% include 'header.html' %}
+    <!-- 引入导航栏 -->
+    {% include 'header.html' %} {% block main %} {% endblock main %}
 
-{% block main %} {% endblock main %}
-
-<!-- Call-To-Action Section
+    <!-- Call-To-Action Section
 ================================================== -->
-<section id="call-to-action">
+    <section id="call-to-action">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="eight columns offset-1">
+            <div class="eight columns offset-1">
 
-            <h1><a href="https://github.com/M010K">探索更多内容</a></h1>
-            <p>这个站点主要用来管理发布的博客，如需要访问其他内容，欢迎访问我的Github👏.
-                <!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->.
-            </p>
+                <h1><a href="https://github.com/M010K">探索更多内容</a></h1>
+                <p>这个站点主要用来管理发布的博客，如需要访问其他内容，欢迎访问我的Github👏.
+                    <!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->.
+                </p>
+
+            </div>
+
+            <div class="three columns action">
+
+
+            </div>
 
         </div>
 
-        <div class="three columns action">
+    </section>
+    <!-- Call-To-Action Section End-->
 
-
-        </div>
-
-    </div>
-
-</section>
-<!-- Call-To-Action Section End-->
-
-<!-- Github Section
+    <!-- Github Section
 ================================================== -->
-<section id="tweets">
+    <section id="tweets">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="tweeter-icon align-center">
-            <i class="fa fa-github"></i>
-        </div>
+            <div class="tweeter-icon align-center">
+                <i class="fa fa-github"></i>
+            </div>
 
-        <ul id="twitter" class="align-center">
-            <li>
+            <ul id="twitter" class="align-center">
+                <li>
                     <span>
                         This is My Github Site.
                         <a href="https://github.com/M010K">https://github.com/M010K</a>
                     </span>
-            </li>
-        </ul>
+                </li>
+            </ul>
 
-        <p class="align-center"><a href="https://github.com/M010K" class="button">Follow HIM</a></p>
+            <p class="align-center"><a href="https://github.com/M010K" class="button">Follow HIM</a></p>
 
-    </div>
+        </div>
 
-</section>
-<!-- Github Section End-->
+    </section>
+    <!-- Github Section End-->
 
 
-<!-- 引入注脚 -->
-{% include 'footer.html' %}
+    <!-- 引入注脚 -->
+    {% include 'footer.html' %}
 
-<!-- Java Script
+    <!-- Java Script
 ================================================== -->
-<script src="{% static 'blog/css/table_css/wrap_table.js' %}"></script>
+    <script src="{% static 'blog/css/table_css/wrap_table.js' %}"></script>
 
 
-<script>
-    window.MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }
-    };
-</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write("<script src= '{% static 'blog/js/jquery-3.6.0.min.js'%}'><\/script>")
-</script>
-<script type="text/javascript" src="{% static 'blog/js/jquery-migrate-3.3.2.min.js' %}"></script>
 
-<script src="{% static 'blog/js/jquery.flexslider.js' %}"></script>
-<script src="{% static 'blog/js/doubletaptogo.js' %}"></script>
-<script src="{% static 'blog/js/init.js' %}"></script>
+    <script>
+        window.jQuery || document.write("<script src= '{% static 'blog/js/jquery-3.6.0.min.js'%}'><\/script>")
+    </script>
+    <script type="text/javascript" src="{% static 'blog/js/jquery-migrate-3.3.2.min.js' %}"></script>
 
-<!-- code highlight -->
-<script src="{% static 'blog/css/highlight/highlight.js' %}"></script>
-<script src="{% static 'blog/css/highlight/highlight.min.js' %}"></script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
+    <script src="{% static 'blog/js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'blog/js/doubletaptogo.js' %}"></script>
+    <script src="{% static 'blog/js/init.js' %}"></script>
 
-<!-- 引入layer.js -->
-<script src="{% static 'layer.js' %}"></script>
+    <!-- code highlight -->
+    <script src="{% static 'blog/css/highlight/highlight.js' %}"></script>
+    <script src="{% static 'blog/css/highlight/highlight.min.js' %}"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- 引入layer.js -->
+    <script src="{% static 'layer.js' %}"></script>
 
 </body>
 
