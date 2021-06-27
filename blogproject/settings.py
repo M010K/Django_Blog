@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',  # install blog app
     'comments.apps.CommentsConfig',  # install comments app
     'userprofile.apps.UserprofileConfig',  # install userprofile app
-    'password_reset',   # install password-reset module
+    'password_reset',  # install password-reset module
+    'mptt',  # install mptt module
+    'ckeditor',  # install ckeditor module
 ]
 
 MIDDLEWARE = [
@@ -116,8 +118,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/layer')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # 设置邮件链接过期时间为10分钟
 PASSWORD_RESET_TOKEN_EXPIRES = 60 * 10
@@ -134,3 +138,33 @@ EMAIL_PORT = 25
 EMAIL_USE_TLS = True
 # 默认的发件人
 DEFAULT_FROM_EMAIL = 'M010K的博客 <mk180400112@163.com>'
+
+CKEDITOR_CONFIGS = {
+    # django-ckeditor默认使用default配置
+    'default': {
+        # 编辑器宽度自适应
+        'width': 'auto',
+        'height': '250px',
+        # tab键转换空格数
+        'tabSpaces': 4,
+        # 工具栏风格
+        'toolbar': 'Custom',
+        # 工具栏按钮
+        'toolbar_Custom': [
+            # 表情 代码块
+            ['Smiley', 'CodeSnippet'],
+            # 字体风格
+            ['Bold', 'Italic', 'Underline', 'RemoveFormat', 'Blockquote'],
+            # 字体颜色
+            ['TextColor', 'BGColor'],
+            # 链接
+            ['Link', 'Unlink'],
+            # 列表
+            ['NumberedList', 'BulletedList'],
+            # 最大化
+            ['Maximize']
+        ],
+        # 加入代码块插件
+        'extraPlugins': ','.join(['codesnippet', 'prism', 'widget', 'lineutils']),
+    }
+}

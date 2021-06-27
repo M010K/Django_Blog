@@ -10,6 +10,7 @@ python-markdown-math = "*"
 pymdown-extensions = "*"
 pygments = "*"
 django-password-reset = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 
