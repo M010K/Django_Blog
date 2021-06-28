@@ -12,6 +12,7 @@ pygments = "*"
 django-password-reset = "*"
 django-ckeditor = "*"
 django-mptt = "*"
+gunicorn = "*"
 
 [dev-packages]
 
