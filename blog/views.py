@@ -1,11 +1,14 @@
 import re
 
 import markdown
-from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, DetailView
 from markdown.extensions.toc import TocExtension, slugify
-from pymdownx.arithmatex import ArithmatexExtension
 
+from .forms import PostForm
 from .models import Category, Tag, Post
 
 
@@ -78,6 +81,63 @@ class PostDetailView(DetailView):
         post.toc = m.group(1) if m is not None else ''
 
         return post
+
+
+@login_required(login_url='/userprofile/login')
+def post_modify(request, id=None):
+    # 判断用户是否请求提交数据
+    if request.method == "POST":
+        post_form = PostForm(data=request.POST)
+
+        # 判断用户提交的数据是否合法
+        if post_form.is_valid():
+            # 判断是更新还是新建文章
+            if id:
+                post = Post.objects.get(id=id)
+                if request.user != post.author:
+                    return HttpResponse("抱歉!你不是本文的作者，无权修改本文!")
+                post.title = request.POST['title']
+                post.body = request.POST['body']
+            else:
+                post = post_form.save(commit=False)
+                post.author = request.user
+
+            if request.POST['category'] != 'none':
+                post.category = Category.objects.get(id=request.POST['category'])
+            else:
+                post.category = None
+
+            post.save()
+
+            return redirect("blog:index")  # 发布完成后返回到Home页面
+        # 用户请求获取数据
+    else:
+        post_form = PostForm()
+        categories = Category.objects.all()
+        tags = Tag.objects.all()
+        context = {
+            "post": Post.objects.get(id=id) if id else None,
+            "post_form": post_form,
+            "categories": categories,
+            "tags": tags
+        }
+
+        if id:
+            return render(request, 'blog/post_update.html', context=context)
+        else:
+            return render(request, 'blog/post.html', context=context)
+
+
+@login_required(login_url='/userprofile/login')
+def post_safe_delete(request, id):
+    if request.method == "POST":
+        post = Post.objects.get(id=id)
+        if request.user != post.author:
+            return HttpResponse("抱歉!你不是本文的作者，无权删除本文!")
+        post.delete()
+        return redirect('blog:index')
+    else:
+        return HttpResponse("删除文章仅允许Post请求!")
 
 
 def about(request):
