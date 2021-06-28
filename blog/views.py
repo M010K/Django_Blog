@@ -3,6 +3,7 @@ import re
 import markdown
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, DetailView
@@ -16,12 +17,28 @@ from .models import Category, Tag, Post
 class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):  # 重写get_context_data方法
         context = super().get_context_data(**kwargs)
         context['post_list'] = Post.objects.all().order_by('-created_time')
         context['category_list'] = Category.objects.all().order_by('-id')
         return context
+
+
+@login_required(login_url='/userprofile/login')
+def blog_index(request, author_id=None):
+    if author_id:
+        post_list = Post.objects.filter(author_id=author_id)
+    else:
+        post_list = Post.objects.all().order_by('-created_time')
+
+    paginator = Paginator(post_list, 3)
+    page = request.GET.get('page')
+
+    post_list = paginator.get_page(page)
+
+    return render(request, 'blog/blog.html', context={"post_list": post_list})
 
 
 class CategoryView(ListView):
