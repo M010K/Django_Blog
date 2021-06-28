@@ -19,9 +19,13 @@
                 <ul id="nav" class="nav">
 
                     <li class="current"><a href="{% url 'blog:index' %}">Home</a></li>
-                    <li><span><a href="blog.html">Blog</a></span>
+                    <li><span><a href="#">Blog</a></span>
                         <ul>
-                            <li><a href="blog.html">Blog Index</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'blog:blog_index' user.id %}">{{ user }}'s Blog</a></li>
+                            {% else %}
+                            <li><a href="#">Blog Index</a></li>
+                            {% endif %}
                             <li><a href="{% url 'blog:post_create' %}">Post</a></li>
                         </ul>
                     </li>
