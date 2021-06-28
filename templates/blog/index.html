@@ -1,181 +1,188 @@
-{% extends 'base.html' %} {% load static %} {% load blog_extras %} {% block main %}
-<!-- Intro Section
-    ================================================== -->
-<section id="intro">
+{% extends 'base.html' %} {% load static %}
+{% load blog_extras %} {% load comments_extra %}
+{% block main %}
+    <!-- Intro Section
+        ================================================== -->
+    <section id="intro">
 
-    <!-- Flexslider Start-->
-    <div id="intro-slider" class="flexslider">
+        <!-- Flexslider Start-->
+        <div id="intro-slider" class="flexslider">
 
-        <ul class="slides">
+            <ul class="slides">
 
-            <!-- Slide -->
-            <li>
-                <div class="row">
-                    <div class="twelve columns">
-                        <div class="slider-text">
-                            <h1>M010K开发的个人博客<span>.</span></h1>
-                            <p>世界上有10种人，一种懂2进制，一种不懂2进制，还有一种以为我说的是2进制</p>
-                        </div>
-                        <div class="slider-image">
-                            <img src="{% static 'blog/images/sliders/home-slider-image-03.png' %}" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Slide -->
-            <li>
-                <div class="row">
-                    <div class="twelve columns">
-                        <div class="slider-text">
-                            <h1>Personal blog developed by M010K<span>.</span></h1>
-                            <p>There are 10 kinds of people in the world, one kind understands the binary system, the other kind does not understand the binary system, and the other kind of people think I am talking about the binary system.</p>
-                        </div>
-                        <div class="slider-image">
-                            <img src="{% static 'blog/images/sliders/home-slider-image-04.png' %}" alt="" />
+                <!-- Slide -->
+                <li>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <div class="slider-text">
+                                <h1>M010K开发的个人博客<span>.</span></h1>
+                                <p>世界上有10种人，一种懂2进制，一种不懂2进制，还有一种以为我说的是2进制</p>
+                            </div>
+                            <div class="slider-image">
+                                <img src="{% static 'blog/images/sliders/home-slider-image-03.png' %}" alt=""/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-        </ul>
+                <!-- Slide -->
+                <li>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <div class="slider-text">
+                                <h1>Personal blog developed by M010K<span>.</span></h1>
+                                <p>There are 10 kinds of people in the world, one kind understands the binary system,
+                                    the other kind does not understand the binary system, and the other kind of people
+                                    think I am talking about the binary system.</p>
+                            </div>
+                            <div class="slider-image">
+                                <img src="{% static 'blog/images/sliders/home-slider-image-04.png' %}" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
-    </div>
-    <!-- Flexslider End-->
-
-</section>
-<!-- Intro Section End-->
-
-<!-- Info Section
-    ================================================== -->
-<section id="info">
-
-    <div class="row">
-
-        <div class="bgrid-quarters s-bgrid-halves">
-
-            <div class="twelve columns align-center">
-                <h2>建站时间</h2>
-                <p>2021-05-20</p>
-            </div>
-
-
-            <div class="twelve columns align-center s-first">
-                <h2 align="center">累积发布博客</h2>
-
-                <p>
-                    共 {{ post_list | length }} 篇
-                </p>
-            </div>
-
-            <!-- 显示总阅读量 -->
-            <div class="twelve columns align-center">
-                {% show_total_views %}
-            </div>
-
-            <!--TODO: 显示总评论数 -->
+            </ul>
 
         </div>
+        <!-- Flexslider End-->
 
-    </div>
+    </section>
+    <!-- Intro Section End-->
 
-</section>
-<!-- Info Section End-->
+    <!-- Info Section
+        ================================================== -->
+    <section id="info">
 
-<!-- Works Section
-    ================================================== -->
-<section id="works">
+        <div class="row">
 
-    <div class="row">
+            <div class="bgrid-quarters s-bgrid-halves">
 
-        <div class="twelve columns align-center">
-            <h1>博客分类</h1>
-        </div>
-        {% show_index_categories %}
-    </div>
-
-</section>
-<!-- Works Section End-->
-
-<!-- Journal Section
-    ================================================== -->
-<section id="journal">
-
-    <div class="row">
-        <div class="twelve columns align-center">
-            <h1>最新博客</h1>
-        </div>
-    </div>
-
-    <div class="blog-entries">
-        {% for post in post_list %}
-        <!-- Entry -->
-        <article class="row entry">
-            <div class="entry-header">
-
-                <div class="permalink">
-                    <a href="{{ post.get_absolute_url }}"><i class="fa fa-link"></i></a>
+                <div class="twelve columns align-center">
+                    <h2>建站时间</h2>
+                    <p>2021-05-20</p>
                 </div>
 
-                <div class="ten columns entry-title pull-right">
-                    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                    </h3>
-                </div>
 
-                <div class="two columns post-meta end">
+                <div class="twelve columns align-center s-first">
+                    <h2 align="center">累积发布博客</h2>
+
                     <p>
-                        <time datetime="{{ post.created_time }}" class="post-date" pubdate="">{{ post.created_time }}</time>
-                        <span class="dauthor">By {{ post.author }}</span>
+                        共 {{ post_list | length }} 篇
                     </p>
                 </div>
 
+                <!-- 显示总阅读量 -->
+                <div class="twelve columns align-center">
+                    {% show_total_views %}
+                </div>
+
+                <!--TODO: 显示总评论数 -->
+                <div class="twelve columns align-center">
+                    {% show_total_comments %}
+                </div>
             </div>
 
-            <div class="ten columns offset-2 post-content">
-                <p>{{ post.excerpt }}
-                    <a class="more-link" href="{{ post.get_absolute_url }}"> 阅读更多
+        </div>
+
+    </section>
+    <!-- Info Section End-->
+
+    <!-- Works Section
+        ================================================== -->
+    <section id="works">
+
+        <div class="row">
+
+            <div class="twelve columns align-center">
+                <h1>博客分类</h1>
+            </div>
+            {% show_index_categories %}
+        </div>
+
+    </section>
+    <!-- Works Section End-->
+
+    <!-- Journal Section
+        ================================================== -->
+    <section id="journal">
+
+        <div class="row">
+            <div class="twelve columns align-center">
+                <h1>最新博客</h1>
+            </div>
+        </div>
+
+        <div class="blog-entries">
+            {% for post in post_list %}
+                <!-- Entry -->
+                <article class="row entry">
+                    <div class="entry-header">
+
+                        <div class="permalink">
+                            <a href="{{ post.get_absolute_url }}"><i class="fa fa-link"></i></a>
+                        </div>
+
+                        <div class="ten columns entry-title pull-right">
+                            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                            </h3>
+                        </div>
+
+                        <div class="two columns post-meta end">
+                            <p>
+                                <time datetime="{{ post.created_time }}" class="post-date"
+                                      pubdate="">{{ post.created_time }}</time>
+                                <span class="dauthor">By {{ post.author }}</span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="ten columns offset-2 post-content">
+                        <p>{{ post.excerpt }}
+                            <a class="more-link" href="{{ post.get_absolute_url }}"> 阅读更多
                                 <i class="fa fa-arrow-circle-o-right"></i></a>
-                </p>
-            </div>
+                        </p>
+                    </div>
 
-        </article>
-        <!-- Entry End -->
-        {% empty %}
-        <article class="row entry">
-            <div class="entry-header">
+                </article>
+                <!-- Entry End -->
+            {% empty %}
+                <article class="row entry">
+                    <div class="entry-header">
 
-                <div class="permalink">
-                    <a href="#"><i class="fa fa-link"></i></a>
-                </div>
+                        <div class="permalink">
+                            <a href="#"><i class="fa fa-link"></i></a>
+                        </div>
 
-                <div class="ten columns entry-title pull-right">
-                    <h3><a href="#">No blog has been post yet.</a>
-                    </h3>
-                </div>
+                        <div class="ten columns entry-title pull-right">
+                            <h3><a href="#">No blog has been post yet.</a>
+                            </h3>
+                        </div>
 
-                <div class="two columns post-meta end">
-                    <p>
-                        <time datetime="2021-05-20" class="post-date" pubdate="">May 20, 2021</time>
-                        <span class="dauthor">By M010K</span>
-                    </p>
-                </div>
+                        <div class="two columns post-meta end">
+                            <p>
+                                <time datetime="2021-05-20" class="post-date" pubdate="">May 20, 2021</time>
+                                <span class="dauthor">By M010K</span>
+                            </p>
+                        </div>
 
-            </div>
+                    </div>
 
-            <div class="ten columns offset-2 post-content">
-                <p>The author is lazy!
-                    <a class="more-link" href="#"> Read More <i class="fa fa-arrow-circle-o-right"></i></a>
-                </p>
-            </div>
-        </article>
-        {% endfor %}
+                    <div class="ten columns offset-2 post-content">
+                        <p>The author is lazy!
+                            <a class="more-link" href="#"> Read More <i class="fa fa-arrow-circle-o-right"></i></a>
+                        </p>
+                    </div>
+                </article>
+            {% endfor %}
 
-    </div>
-    <!-- Entries End -->
+        </div>
+        <!-- Entries End -->
 
-</section>
+    </section>
 
 
-<!-- Journal Section End-->
+    <!-- Journal Section End-->
 
 {% endblock main %}
