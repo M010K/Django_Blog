@@ -11,6 +11,7 @@ pymdown-extensions = "*"
 pygments = "*"
 django-password-reset = "*"
 django-ckeditor = "*"
+django-mptt = "*"
 
 [dev-packages]
 
