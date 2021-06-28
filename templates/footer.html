@@ -6,8 +6,13 @@
 
         <div class="twelve columns">
             <ul class="footer-nav">
-                <li><a href="index.html">Home.</a></li>
-                <li><a href="blog.html">Blog.</a></li>
+                <li><a href="{% url 'blog:index' %}">Home.</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'blog:blog_index' user.id %}">Blog.</a></li>
+                {% else %}
+                    <li><a href="#">Blog.</a></li>
+                {% endif %}
+
                 <!-- <li><a href="portfolio-index.html">Portfolio.</a></li> -->
                 <li><a href="{% url 'blog:about' %}">About.</a></li>
                 <li><a href="{% url 'blog:contact' %}">Contact.</a></li>

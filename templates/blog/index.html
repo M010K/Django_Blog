@@ -113,7 +113,7 @@
         </div>
 
         <div class="blog-entries">
-            {% for post in post_list %}
+            {% for post in page_obj %}
                 <!-- Entry -->
                 <article class="row entry">
                     <div class="entry-header">
@@ -178,8 +178,65 @@
 
         </div>
         <!-- Entries End -->
-
     </section>
+
+    <section>
+        {% if is_paginated %}
+            <div class="content-outer">
+
+                <div id="page-content" class="row">
+
+                    <div id="primary" class="eight columns">
+                        <!-- Pagination -->
+                        <nav class="col full pagination">
+                            <!-- 如果不是第一页，则显示上翻按钮 -->
+                            <ul>
+                                {% if page_obj.has_previous %}
+                                    <li>
+                                        <a class="page-numbers prev inactive" href="?page=1">
+                                            &laquo; 1
+                                        </a>
+                                    </li>
+                                    <span>...</span>
+                                    <li>
+                                        <a href="?page={{ page_obj.previous_page_number }}" class="page-numbers">
+                                            {{ page_obj.previous_page_number }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                <li>
+                                    <!-- 当前页面 -->
+                                    <a href="#" class="page-numbers current">{{ page_obj.number }}</a>
+                                </li>
+
+                                <!-- 如果不是最末页，则显示下翻按钮 -->
+                                {% if page_obj.has_next %}
+                                    <li>
+                                        <a href="?page={{ page_obj.next_page_number }}"
+                                           class="page-numbers"
+                                        >
+                                            {{ page_obj.next_page_number }}
+                                        </a>
+                                    </li>
+                                    <span>...</span>
+                                    <li>
+                                        <a href="?page={{ page_obj.paginator.num_pages }}"
+                                           class="page-numbers next"
+                                        >
+                                            {{ page_obj.paginator.num_pages }} &raquo;
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+
+
 
 
     <!-- Journal Section End-->
