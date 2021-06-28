@@ -1,4 +1,5 @@
 from django import template
+from ..models import Comment
 from ..forms import CommentForm
 
 register = template.Library()
@@ -12,5 +13,13 @@ def show_comments(context, post, user):
         'post': post,
         'user': user,
         'comments_list': comment_list,
-        'comment_form' : comment_form,
+        'comment_form': comment_form,
+    }
+
+
+@register.inclusion_tag('comments/inclusions/_total_comments.html', takes_context=True)
+def show_total_comments(context):
+    comment_count = Comment.objects.all().count()
+    return {
+        'comment_count': comment_count
     }

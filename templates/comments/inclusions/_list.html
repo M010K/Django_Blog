@@ -1,10 +1,6 @@
 {% load static %} {% load mptt_tags %}
 <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
-
-<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
-<link rel="stylesheet" href="{% static 'prism/prism.css' %}">
-
 {% if user.is_authenticated %}
     <div>
         <form
