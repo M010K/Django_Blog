@@ -43,7 +43,7 @@ Pipfile.lock
 *.log
 local_settings.py
 db.sqlite3
-*/migrations
+
 
 #Mac
 .DS_Store
