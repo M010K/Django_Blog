@@ -1,2 +1,6 @@
 <h2>累积访问量</h2>
-<p>{{ view_count.nums }} 次</p>
+{% if view_count.num %}
+    <p>{{ view_count.nums }} 次</p>
+{% else %}
+    <p> 0 次</p>
+{% endif %}
