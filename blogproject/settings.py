@@ -121,7 +121,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 
 # 设置邮件链接过期时间为10分钟
 PASSWORD_RESET_TOKEN_EXPIRES = 60 * 10
