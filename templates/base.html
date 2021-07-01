@@ -5,7 +5,11 @@
     <!--- Basic Page Needs
    ================================================== -->
     <meta charset="utf-8">
-    <title>M010K的个人博客</title>
+    {% if user %}
+        <title>{{ user }}的个人博客</title>
+    {% else %}
+        <title>M010K的个人博客</title>
+    {% endif %}
     <meta name="description" content="基于HTML5/CSS3的个人博客">
     <meta name="author" content="M010K">
 
@@ -21,6 +25,8 @@
     <link rel="stylesheet" href="{% static 'blog/css/table_css/table.css' %}">
     <!-- 添加代码高亮样式 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.0.1/styles/stackoverflow-light.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-easyui@1.5.21/css/easyui.css">
 
 
     <!-- Script
@@ -111,14 +117,9 @@
 </script>
 
 
-
-{#<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
-{#<script type="text/javascript"#}
-{#        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider.js"></script>#}
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-migrate@3.3.2/dist/jquery-migrate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.easyui@1.0.0/jquery.easyui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flexslider@2.7.2/jquery.flexslider.min.js"></script>
 
 {% block script %}{% endblock script %}
