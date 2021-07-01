@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timesince import timesince
@@ -52,7 +52,14 @@ def user_register(request):
                 return HttpResponse("邮箱已存在!")
 
             new_user.set_password(user_register_form.cleaned_data['password'])
+
             new_user.save()
+
+            # 新用户添加默认组，包含发布文章和评论的相关权限
+            post_group = Group.objects.get(name='post_permission')
+            comment_group = Group.objects.get(name='comment_permission')
+            post_group.user_set.add(new_user)
+            comment_group.user_set.add(new_user)
 
             # 保存好数据后立即登录并返回博客列表页面
             login(request, new_user)
@@ -82,4 +89,3 @@ def user_delete(request, id):
             return HttpResponse("你没有删除操作的权限!")
     else:
         return HttpResponse("仅接受post请求!")
-
