@@ -44,5 +44,9 @@ class Comment(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['created_time']
 
+    class Meta:
+        verbose_name = '评论'
+        verbose_name_plural = verbose_name
+
     def __str__(self):
         return self.body[:20]
