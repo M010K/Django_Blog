@@ -23,3 +23,6 @@ urlpatterns = [
     path('password-reset/', include('password_reset.urls')),
     path('comments/', include('comments.urls'))
 ]
+
+admin.site.site_header = "博客后台管理"
+admin.site.site_title = "博客后台管理"
