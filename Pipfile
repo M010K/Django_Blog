@@ -13,6 +13,7 @@ django-password-reset = "*"
 django-ckeditor = "*"
 django-mptt = "*"
 gunicorn = "*"
+django-simpleui = "*"
 
 [dev-packages]
 

@@ -24,6 +24,7 @@ BASE_DIR = back(back(back(os.path.abspath(__file__))))
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
