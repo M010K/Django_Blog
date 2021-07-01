@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="{% static 'blog/css/media-queries.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/table_css/table.css' %}">
     <!-- 添加代码高亮样式 -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/stackoverflow-light.min.css">
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/stackoverflow-light.min.css">
 
 
     <!-- Script
@@ -35,105 +36,106 @@
 </head>
 
 <body>
-    <!-- 引入导航栏 -->
-    {% include 'header.html' %} {% block main %} {% endblock main %}
+<!-- 引入导航栏 -->
+{% include 'header.html' %} {% block main %} {% endblock main %}
 
-    <!-- Call-To-Action Section
+<!-- Call-To-Action Section
 ================================================== -->
-    <section id="call-to-action">
+<section id="call-to-action">
 
-        <div class="row">
+    <div class="row">
 
-            <div class="eight columns offset-1">
+        <div class="eight columns offset-1">
 
-                <h1><a href="https://github.com/M010K">探索更多内容</a></h1>
-                <p>这个站点主要用来管理发布的博客，如需要访问其他内容，欢迎访问我的Github👏.
-                    <!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->.
-                </p>
-
-            </div>
-
-            <div class="three columns action">
-
-
-            </div>
+            <h1><a href="https://github.com/M010K/Django_Blog">探索更多内容</a></h1>
+            <p>这个站点主要用来管理发布的博客，如需要访问其他内容，欢迎访问我的Github👏.
+                <!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. -->.
+            </p>
 
         </div>
 
-    </section>
-    <!-- Call-To-Action Section End-->
+        <div class="three columns action">
 
-    <!-- Github Section
-================================================== -->
-    <section id="tweets">
-
-        <div class="row">
-
-            <div class="tweeter-icon align-center">
-                <i class="fa fa-github"></i>
-            </div>
-
-            <ul id="twitter" class="align-center">
-                <li>
-                    <span>
-                        This is My Github Site.
-                        <a href="https://github.com/M010K">https://github.com/M010K</a>
-                    </span>
-                </li>
-            </ul>
-
-            <p class="align-center"><a href="https://github.com/M010K" class="button">Follow HIM</a></p>
 
         </div>
 
-    </section>
-    <!-- Github Section End-->
+    </div>
 
+</section>
+<!-- Call-To-Action Section End-->
 
-    <!-- 引入注脚 -->
-    {% include 'footer.html' %}
-
-    <!-- Java Script
+<!-- Github Section
 ================================================== -->
-    <script src="{% static 'blog/css/table_css/wrap_table.js' %}"></script>
+<section id="github">
+
+    <div class="row">
+
+        <div class="github-icon align-center">
+            <i class="fa fa-github"></i>
+        </div>
+
+        <ul id="githuber" class="align-center">
+                <span>
+                    This is My Github Site.
+                    <a href="https://github.com/M010K">https://github.com/M010K</a>
+                </span>
+        </ul>
+
+        <p class="align-center"><a href="https://github.com/M010K" class="button">Follow HIM</a></p>
+
+    </div>
+
+</section>
+<!-- Github Section End-->
 
 
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [
-                    ['$', '$'],
-                    ['\\(', '\\)']
-                ]
-            }
-        };
-    </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-    </script>
+<!-- 引入注脚 -->
+{% include 'footer.html' %}
+
+<!-- Java Script
+================================================== -->
+<script src="{% static 'blog/css/table_css/wrap_table.js' %}"></script>
 
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider.js"></script>
+<script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [
+                ['$', '$'],
+                ['\\(', '\\)']
+            ]
+        }
+    };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
 
-    {% block script %}{% endblock script %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1-lts/dist/umd/popper.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider.js"></script>
+
+{% block script %}{% endblock script %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1-lts/dist/umd/popper.min.js"></script>
 
 
-    <script src="{% static 'blog/js/doubletaptogo.js' %}"></script>
-    <script src="{% static 'blog/js/init.js' %}"></script>
+<script src="{% static 'blog/js/doubletaptogo.js' %}"></script>
+<script src="{% static 'blog/js/init.js' %}"></script>
 
-    <!-- code highlight -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-    </script>
+<!-- code highlight -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 
-    <!-- 引入layer.js -->
-    <script src="{% static 'layer/layer.js' %}"></script>
+<!-- 引入layer.js -->
+<script src="{% static 'layer/layer.js' %}"></script>
 
 </body>
 
