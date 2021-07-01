@@ -10,6 +10,10 @@ from .forms import CommentForm
 
 @login_required(login_url='/userprofile/login/')
 def post_comment(request, post_id, parent_comment_id=None):
+    print(request.user.get_all_permissions())
+    if not request.user.has_perm('comments.add_comment'):
+        return HttpResponse("抱歉!你无权发布评论!具体请在主页联系M010K!")
+
     post = get_object_or_404(Post, id=post_id)
 
     if request.method == "POST":
