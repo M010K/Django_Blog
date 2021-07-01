@@ -118,10 +118,18 @@ def post_modify(request, id=None):
                 post = post_form.save(commit=False)
                 post.author = request.user
 
-            if request.POST['category'] != 'none':
-                post.category = Category.objects.get(id=request.POST['category'])
-            else:
-                post.category = None
+            cate_id = request.POST['category']
+            if not cate_id:
+                return HttpResponse("文章分类不能为空!")
+
+            if isinstance(cate_id, int):    # 文章分类为整数
+                cate = Category.objects.get(id=cate_id)
+                if cate:    # 是已有的文章分类
+                    post.category = Category.objects.get(id=request.POST['category'])
+                else:   # 文章分类名字为数字，创建对应分类
+                    post.category = Category.objects.create(name=cate_id)
+            else:   # 文章分类名字不是纯数字，创建对应分类
+                post.category = Category.objects.create(name=cate_id)
 
             post.save()
 
