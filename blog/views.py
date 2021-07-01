@@ -103,6 +103,9 @@ class PostDetailView(DetailView):
 @login_required(login_url='/userprofile/login')
 def post_modify(request, id=None):
     # 判断用户是否请求提交数据
+    if not request.user.has_perm('blog.add_post'):
+        return HttpResponse("抱歉!你无权发布文章!具体请在主页联系M010K!")
+
     if request.method == "POST":
         post_form = PostForm(data=request.POST)
 
@@ -123,7 +126,7 @@ def post_modify(request, id=None):
             if not cate_id:
                 return HttpResponse("文章分类不能为空!")
 
-            if isinstance(cate_id, int):    # 文章分类为整数
+            if str(cate_id).isdigit():    # 文章分类为整数
                 cate = Category.objects.get(id=cate_id)
                 if cate:    # 是已有的文章分类
                     post.category = Category.objects.get(id=request.POST['category'])
