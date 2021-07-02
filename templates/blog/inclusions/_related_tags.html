@@ -1,3 +1,4 @@
 {% for tag in tag_list %}
-<a href="{% url 'blog:tag' tag.pk %}" class="badge badge-pill badge-secondary">{{ tag.name }}</a> {% empty %}
-<a href="#">暂无标签</a> {% endfor %}
+    <a href="{% url 'blog:tag' tag.pk %}" class="badge badge-pill badge-secondary">{{ tag.name }}</a>
+{% empty %}
+    <a class="badge badge-pill badge-secondary" href="#">暂无标签</a> {% endfor %}
