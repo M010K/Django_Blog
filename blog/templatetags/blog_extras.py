@@ -44,7 +44,7 @@ def show_tags(context):
 @register.inclusion_tag('blog/inclusions/_index_categories.html', takes_context=True)
 def show_index_categories(context):
     """
-    为主页返回所有分类列表
+    为主页返回所有不为空的分类列表
     """
     category_list = Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
     return {
