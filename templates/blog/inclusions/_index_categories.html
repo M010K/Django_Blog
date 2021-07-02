@@ -1,3 +1,4 @@
+<!--
 <script>
     function addRandomURL() {
         var img_list = {
@@ -18,45 +19,50 @@
 
         var obj = document.getElementById("random-image");
         obj.src = img_list[path];
-        obj.id = "random-image" + x.toString();
-
+        obj.id = "random-image" + x.toString() + Math.floor((Math.random() * 10000) + 1);
     }
 </script>
+-->
+
 <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-halves">
     {% for category in category_list %}
-    <div class="columns portfolio-item">
-        <div class="item-wrap">
-            <a href="{% url 'blog:category' category.pk %}">
+        <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <a href="{% url 'blog:category' category.pk %}">
 
-                <img id="random-image" alt="" src="">
+                    <img id="random-image" alt="" src="https://source.unsplash.com/collection/3694365/600x626">
 
-                <div class="overlay"></div>
-                <div class="link-icon"><i class="fa fa-link"></i></div>
-            </a>
-            <div class="portfolio-item-meta">
-                <h5><a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a></h5>
-                <p>
-                    {% if category.excerpt|length > 0 %} {{ category.excerpt }} {% else %} No discription of this category. {% endif %}
-                </p>
+                    <div class="overlay"></div>
+                    <div class="link-icon"><i class="fa fa-link"></i></div>
+                </a>
+                <div class="portfolio-item-meta">
+                    <h5><a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a></h5>
+                    <p>
+                        {% if category.excerpt|length > 0 %} {{ category.excerpt }} {% else %} No discription of this
+                            category. {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        addRandomURL()
-    </script>
+        <!--
+        <script type="text/javascript">
+            addRandomURL()
+        </script>
+        -->
     {% empty %}
-    <div class="columns portfolio-item">
-        <div class="item-wrap">
-            <a href="#">
-                <img alt="" src="https://source.unsplash.com/collection/220381/600x626">
-                <div class="overlay"></div>
-                <div class="link-icon"><i class="fa fa-link"></i></div>
-            </a>
-            <div class="portfolio-item-meta">
-                <h5><a href="#">Blank Category</a></h5>
-                <p>No discription of this category.</p>
+        <div class="columns portfolio-item">
+            <div class="item-wrap">
+                <a href="#">
+                    <img alt="" src="https://source.unsplash.com/collection/220381/600x626">
+                    <div class="overlay"></div>
+                    <div class="link-icon"><i class="fa fa-link"></i></div>
+                </a>
+                <div class="portfolio-item-meta">
+                    <h5><a href="#">Blank Category</a></h5>
+                    <p>No discription of this category.</p>
+                </div>
             </div>
         </div>
-    </div>
     {% endfor %}
 </div>
+
