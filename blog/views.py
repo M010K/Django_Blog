@@ -33,7 +33,7 @@ def blog_index(request, author_id=None):
     else:
         post_list = Post.objects.all().order_by('-created_time')
 
-    paginator = Paginator(post_list, 3)
+    paginator = Paginator(post_list.order_by('-created_time'), 3)
     page = request.GET.get('page')
 
     post_list = paginator.get_page(page)
