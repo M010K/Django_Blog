@@ -56,7 +56,7 @@ def show_related_tags(context, post):
     """
     返回当前文章post的相关标签列表
     """
-    tag_list = Tag.objects.filter(post=post).order_by('-id')
+    tag_list = Tag.objects.filter(post=post).order_by('id')
     return {
         'tag_list': tag_list,
     }
