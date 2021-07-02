@@ -49,7 +49,7 @@
                                             id="category"
                                             name="category"
                                     >
-                                        <option value="none">请选择文章分类</option>
+                                        <option value="none" disabled="disabled">请选择文章分类</option>
                                         {% for category in categories %}
                                             <option value="{{ category.id }}"
                                                     {% if category.id == post.category.id %}
