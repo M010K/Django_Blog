@@ -38,19 +38,23 @@
 
                         <p class="post-meta">
                             <time class="date" datetime="{{ post.created_time }}">{{ post.created_time }}</time>
-                            /
                             <span class="readings">
-                                <a href="{{ post.get_absolute_url }}">阅读量: {{ post.views }}</a>
+                                <a class="badge badge-pill badge-success"
+                                   href="{{ post.get_absolute_url }}">阅读量: {{ post.views }}</a>
                             </span>
                             <br>
                             <span class="dauthor">
                                 文章作者: {{ post.author }} /
-                                <a href="{% url 'blog:post_update' post.id %}">更新文章</a> /
-                                <a href="#" onclick="confirm_safe_delete()">删除文章</a>
+                                <a class="badge badge-pill badge-info"
+                                   href="{% url 'blog:post_update' post.id %}">更新文章</a>
+
+                                <a class="badge badge-pill badge-danger" href="#"
+                                   onclick="confirm_safe_delete()">删除文章</a>
                             </span>
                             <br>
                             <span class="categories">文章分类:
-                                <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>
+                                <a href="{% url 'blog:category' post.category.pk %}"
+                                   class="badge badge-pill badge-primary">{{ post.category.name }}</a>
                             </span>
                             <br>
                             <span class="tags">
