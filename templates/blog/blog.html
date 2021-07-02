@@ -1,8 +1,13 @@
 {% extends 'base.html' %} {% load static %}
 {% load blog_extras %} {% load comments_extra %}
 {% block main %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'blog/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/layout.css' %}">
     <!-- Page Title
-       ================================================== -->
+   ================================================== -->
     <div id="page-title">
 
         <div class="row">
@@ -17,11 +22,9 @@
 
     </div>
     <!-- Page Title End-->
-
     <!-- Content
        ================================================== -->
     <div class="content-outer">
-
         <div id="page-content" class="row">
 
             <div id="primary" class="eight columns">
@@ -36,16 +39,18 @@
                                 <time class="date" datetime="{{ post.created_time }}">{{ post.created_time }}</time>
                                 /
                                 <span class="categories">
-                                    <a href="{% url 'blog:category' post.category.id %}">{{ post.category }}</a> /
+                                    <a class="badge badge-pill badge-primary"
+                                       href="{% url 'blog:category' post.category.id %}">{{ post.category }}</a> /
                                 </span>
                             </p>
                         </div>
 
                         <div class="post-thumb">
-                            <a href="{{ post.get_absolute_url }}" title=""><img
-                                    src="{% static 'blog/images/post-image/post-image-1300x500-01.jpg' %}"
-                                    alt="post-image"
-                                    title="post-image"></a>
+                            <a href="{{ post.get_absolute_url }}" title="">
+                                <img id="random-image"
+                                     src="https://source.unsplash.com/collection/220381/1300x500"
+                                     alt=""
+                                     title="post-image"></a>
                         </div>
 
                         <div class="post-content">
@@ -130,3 +135,4 @@
     <!-- Content End-->
 
 {% endblock main %}
+{% block script %}{% endblock script %}
