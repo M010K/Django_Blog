@@ -45,10 +45,13 @@ class CategoryView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    paginate_by = 3
 
-    def get_queryset(self):
+    def get_context_data(self, **kwargs):  # 重写get_context_data方法
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
-        return super(CategoryView, self).get_queryset().filter(category=cate)
+        self.object_list = Post.objects.filter(category_id=cate.id)
+        context = super().get_context_data(**kwargs)
+        return context
 
 
 class TagView(ListView):
